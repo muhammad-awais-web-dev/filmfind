@@ -1,0 +1,347 @@
+/* Color Variables */
+:root {
+  --primary-bg: #141414;
+  --secondary-bg: #1a1a1a;
+  --tertiary-bg: #1f1f1f;
+  --accent-bg: #333;
+  --hover-bg: #444;
+  --primary-red: #cc000a;
+  --hover-red: #ff3b48;
+  --text-primary: white;
+  --text-secondary: #aaa;
+  --border-color: #333;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.4);
+  --blur-overlay: #f2f2f244;
+  --hover-overlay: rgba(255, 255, 255, 0.1);
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 12px 40px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 8px 2px var(--blur-overlay);
+  background-color: var(--primary-bg);
+  position:sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Navbar Container */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: var(--text-primary);
+  font-weight: bold;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  height: 70px;
+}
+
+/* Logo Styles */
+.logo {
+  text-decoration: none;
+  color: var(--primary-red);
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: var(--hover-red);
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+}
+
+/* Mobile Menu Toggle */
+.mobileMenuToggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.mobileMenuToggle span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/* Navigation Styles */
+.navigation {
+  display: flex;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* Menu Item Styles */
+.menuItem {
+  position: relative;
+}
+
+.menuLink {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.menuLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--hover-red);
+}
+
+/* Dropdown Styles */
+.dropdown:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--secondary-bg);
+  min-width: 200px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 10px 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.dropdownMenu li {
+  padding: 0;
+}
+
+.dropdownLink {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.dropdownLink:hover {
+  background-color: var(--hover-red);
+  color: white;
+}
+
+/* Search Bar Styles */
+.searchSection{
+    max-width: 1200px;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchbar {
+    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--accent-bg);
+  border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.searchContainer:focus-within {
+  background-color: var(--hover-bg);
+  box-shadow: 0 0 0 2px var(--primary-red);
+}
+
+.searchInput {
+    width: 100%;
+    justify-self: stretch;
+  background: none;
+  border: none;
+  color: white;
+  padding: 11px 20px;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--text-secondary);
+}
+
+.searchButton {
+    justify-self: flex-end;
+  background-color: var(--primary-red);
+  border: none;
+  color: white;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchButton:hover {
+  background-color: var(--hover-red);
+}
+
+.searchButton i {
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 15px;
+    height: 60px;
+  }
+
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+
+  .mobileMenuToggle {
+    display: flex;
+  }
+
+  .navigation {
+    position: fixed;
+    top: 60px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: var(--primary-bg);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 20px;
+    transition: left 0.3s ease;
+    z-index: 999;
+  }
+
+  .navigation.open {
+    left: 0;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .menuItem {
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .menuLink {
+    padding: 15px 0;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .dropdown .dropdownMenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background-color: var(--tertiary-bg);
+    box-shadow: none;
+    border-radius: 0;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .searchbar {
+    margin-top: 20px;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .searchContainer {
+    width: 100%;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .logo h1 {
+    font-size: 1.3rem;
+  }
+
+  .searchInput {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+
+  .searchButton {
+    padding: 10px 12px;
+  }
+}
+
+/* Animation for mobile menu toggle */
+.navigation.open ~ .mobileMenuToggle span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.navigation.open ~ .mobileMenuToggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.navigation.open ~ .mobileMenuToggle span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
