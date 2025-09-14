@@ -29,8 +29,7 @@ function Navbar() {
         <Link to="/" className={styles.logo}>
           <h1>FilmFind</h1>
         </Link>
-        
-        <button 
+        <button
           className={styles.mobileMenuToggle}
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
