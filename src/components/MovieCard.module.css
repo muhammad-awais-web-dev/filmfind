@@ -1,5 +1,11 @@
 .movieCard{
     height: fit-content;
+    padding: 10px 0;
+    transition: all 0.2s ease-in-out;
+}
+.movieCard:hover{
+    transform: translateY(-5px);
+    transition: transform 0.2s ease-in-out;
 }
 .posterImage{
     width: 200px;

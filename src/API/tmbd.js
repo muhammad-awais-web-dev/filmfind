@@ -16,3 +16,23 @@ export async function fetchPopularMovies(page = 1){
         return console.error(err);
     }
 }
+
+export async function trendingMovies(duration = 'day') {
+    try {
+        const res = await fetch(`${BASE_URL}/trending/movie/${duration}?api_key=${API_KEY}`, options);
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        return console.error(err);
+    }
+}
+
+export async function trendingTv(duration = 'day') {
+    try {
+        const res = await fetch(`${BASE_URL}/trending/tv/${duration}?api_key=${API_KEY}`, options);
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        return console.error(err);
+    }
+}
