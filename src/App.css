@@ -1,3 +1,23 @@
+/* Color Variables */
+:root {
+  --primary-bg: #141414;
+  --secondary-bg: #1a1a1a;
+  --tertiary-bg: #1f1f1f;
+  --accent-bg: #333;
+  --hover-bg: #444;
+  --primary-red: #cc000a;
+  --hover-red: #ff3b48;
+  --text-primary: white;
+  --text-secondary: #aaa;
+  --border-color: #333;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.4);
+  --blur-overlay: #f2f2f244;
+  --hover-overlay: rgba(255, 255, 255, 0.1);
+}
+
+
+
 *{
   margin: 0;
   padding: 0;
@@ -8,6 +28,10 @@ html,body {
   background-color: #121212;
   color: #ffffff;
   width: 100%;
+}
+section{
+  max-width: 1200px;
+  margin: auto;
 }
 .App {
   text-align: center;
