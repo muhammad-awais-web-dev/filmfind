@@ -1,12 +1,17 @@
 import React from 'react'
 import Hero from './Hero'
+import Trending from './Trending'
+import { useSearch } from '../../SearchContext';
+import Movies from './Movies';
+import TV from './TV';
 
 function Home() {
+  const { setSearch } = useSearch();
   return (<>
-    <section style={{ padding: '20px', color: 'var(--text-primary)' }}>
-      <h1>Welcome to the Movie App</h1>
-    </section>
-    <Hero />
+    <Hero setSearch={setSearch} />
+    <Trending />
+    <Movies />
+    <TV />
   </>
   )
 }

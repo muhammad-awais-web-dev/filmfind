@@ -1,0 +1,72 @@
+.hero{
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    background-image: image-set(url("https://media.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,cc000a)/hoVj2lYW3i7oMd1o7bPQRZd1lk1.jpg") 1x, url("https://media.themoviedb.org/t/p/w3840_and_h1200_multi_faces_filter(duotone,00192f,cc000a)/hoVj2lYW3i7oMd1o7bPQRZd1lk1.jpg") 2x);
+    gap: 20px;
+}
+.hero h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.hero p {
+    font-size: 1.9rem;
+    color: #ffffff;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.searchSection{
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--blur-overlay);
+    border-radius: 30px;
+    box-shadow: var(--shadow-light);
+}
+.searchContainer{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.searchInput{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    outline: none;
+}
+.searchButton{
+    background-color: var(--primary-red);
+    color: white;
+    height: 100%;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.searchButton:hover {
+    background-color: var(--hover-red);
+}
+.searchButton:disabled {
+    background-color: var(--text-secondary);
+    cursor: not-allowed;
+}

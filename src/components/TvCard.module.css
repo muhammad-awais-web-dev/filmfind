@@ -1,0 +1,125 @@
+.movieCard{
+    height: fit-content;
+    padding: 10px 0;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    -webkit-user-select: none; /* Chrome, Safari, newer Opera */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standard */
+}
+.movieCard:hover{
+    transform: translateY(-5px);
+    transition: transform 0.2s ease-in-out;
+}
+.previewToggle{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.previewToggle:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: background-color 0.2s ease-in-out;
+    color: black;
+}
+.posterImage{
+    width: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    color: var(--text-primary);
+}
+.voteIndicator{
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.voteIndicatorFill{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+.backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1000;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+.overlay{
+    width: 90%;
+    height: 90%;
+    max-width: 700px;
+    max-height: 900vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    display: flex;
+    backdrop-filter: blur(5px);
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 20px rgba(255, 255, 225, 0.3);
+}
+@media (max-width: 900px) {
+    .movieCard{
+        width: 100%;
+    }
+    .posterImage{
+        width: 150px;
+    }
+    .title{
+        font-size: 1rem;
+    }
+    .voteIndicator{
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
+        margin-left: 3px;
+    }
+    .voteIndicatorFill{
+        width: 25px;
+        height: 25px;
+        font-size: 11px;
+    }
+}
+@media (max-width: 700px) {
+    .movieCard{
+        width: 100%;
+        padding: 5px 0;
+    }
+    .posterImage{
+        width: 120px;
+    }
+    .title{
+        font-size: 0.9rem;
+    }
+}

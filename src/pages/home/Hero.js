@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState } from 'react'
 import styles from './Hero.module.css'
+import { useNavigate } from 'react-router-dom'
 
 
 
 
 
-function Hero() {
+function Hero({ setSearch }) {
 
     const [searchQuery, setSearchQuery] = useState('')
+    const navigate = useNavigate();
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value)
@@ -19,13 +21,15 @@ function Hero() {
         if (searchQuery.trim()) {
         // Handle search functionality here
         console.log('Searching for:', searchQuery)
+        setSearch(searchQuery);
+        navigate(`/search-result`)
         // You can add navigation to search results page later
         }
     }
 
 
   return (
-    <section className="hero">
+    <section className={styles.hero}>
         <h1>Welcome to FilmFind</h1>
         <p>Millions of movies, TV shows and people to discover. Explore now.</p>
       <div className={styles.searchSection}>
@@ -38,7 +42,7 @@ function Hero() {
               onChange={handleSearchChange}
               className={styles.searchInput}
             />
-            <button type="submit" className={styles.searchButton}>
+            <button type="submit" disabled={!searchQuery} className={styles.searchButton}>
               <i className="fa-solid fa-search"></i>
             </button>
           </div>

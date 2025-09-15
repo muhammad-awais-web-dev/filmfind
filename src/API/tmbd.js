@@ -16,3 +16,34 @@ export async function fetchPopularMovies(page = 1){
         return console.error(err);
     }
 }
+
+export async function trending(duration = 'day') {
+    try {
+        const res = await fetch(`${BASE_URL}/trending/all/${duration}?api_key=${API_KEY}`, options);
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        return console.error(err);
+    }
+}
+
+export async function movie(list = 'now_playing') {
+    try {
+        const res = await fetch(`${BASE_URL}/movie/${list}?language=en-US&page=1&api_key=${API_KEY}`, options);
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        return console.error(err);
+    }
+}
+export async function tv(list = 'airing_today') {
+    try {
+        const res = await fetch(`${BASE_URL}/tv/${list}?language=en-US&page=1&api_key=${API_KEY}`, options);
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        return console.error(err);
+    }
+}
+
+
