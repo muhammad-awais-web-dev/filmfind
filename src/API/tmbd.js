@@ -36,5 +36,14 @@ export async function movie(list = 'now_playing') {
         return console.error(err);
     }
 }
+export async function tv(list = 'airing_today') {
+    try {
+        const res = await fetch(`${BASE_URL}/tv/${list}?language=en-US&page=1&api_key=${API_KEY}`, options);
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        return console.error(err);
+    }
+}
 
 

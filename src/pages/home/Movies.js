@@ -9,15 +9,6 @@ const moviesPopular = await movie('popular');
 const moviesTopRated = await movie('top_rated');
 const moviesUpcoming = await movie('upcoming');
 
-console.log("Movies:");
-console.log("moviesNowPlaying");
-console.log(moviesNowPlaying);
-console.log("moviesPopular");
-console.log(moviesPopular);
-console.log("moviesTopRated");
-console.log(moviesTopRated);
-console.log("moviesUpcoming");
-console.log(moviesUpcoming);
 
 function Movies() {
 
