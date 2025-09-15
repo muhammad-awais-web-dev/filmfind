@@ -17,9 +17,9 @@ export async function fetchPopularMovies(page = 1){
     }
 }
 
-export async function trendingMovies(duration = 'day') {
+export async function trending(duration = 'day') {
     try {
-        const res = await fetch(`${BASE_URL}/trending/movie/${duration}?api_key=${API_KEY}`, options);
+        const res = await fetch(`${BASE_URL}/trending/all/${duration}?api_key=${API_KEY}`, options);
         const json = await res.json();
         return json;
     } catch (err) {
@@ -27,12 +27,14 @@ export async function trendingMovies(duration = 'day') {
     }
 }
 
-export async function trendingTv(duration = 'day') {
+export async function movie(list = 'now_playing') {
     try {
-        const res = await fetch(`${BASE_URL}/trending/tv/${duration}?api_key=${API_KEY}`, options);
+        const res = await fetch(`${BASE_URL}/movie/${list}?language=en-US&page=1&api_key=${API_KEY}`, options);
         const json = await res.json();
         return json;
     } catch (err) {
         return console.error(err);
     }
 }
+
+

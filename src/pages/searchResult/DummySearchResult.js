@@ -1,6 +1,8 @@
 import React from 'react'
+import { useSearch } from '../../SearchContext';
 
-function DummySearchResult({ search }) {
+function DummySearchResult() {
+  const { search } = useSearch();
   return (
     <div>
       <h2>Search Results</h2>

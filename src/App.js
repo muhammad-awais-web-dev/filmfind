@@ -3,22 +3,20 @@ import { Route,Routes, BrowserRouter } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Navbar from './components/Navbar';
 import DummySearchResult from './pages/searchResult/DummySearchResult';
-import { useState } from 'react';
+import { SearchProvider } from './SearchContext';
+
 
 function App() {
-
-  const [search, setSearch] = useState('');
-
   return (
-    <>
+    <SearchProvider>
       <BrowserRouter>
-        <Navbar setSearch={setSearch} />
+        <Navbar />
         <Routes>
-          <Route path='/' element={<Home setSearch={setSearch} />}/>
-          <Route path='/search-result' element={<DummySearchResult search={search} />}/>
+          <Route path='/' element={<Home />}/>
+          <Route path='/search-result' element={<DummySearchResult />}/>
         </Routes>
       </BrowserRouter>
-    </>
+    </SearchProvider>
   );
 }
 
