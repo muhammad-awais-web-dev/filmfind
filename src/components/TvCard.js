@@ -1,13 +1,10 @@
 import React from 'react'
 import styles from './TvCard.module.css'
-import { usePreview } from '../PreviewContext';
 import { useNavigate } from 'react-router-dom';
 
 function TvCard(  { movie } ) {
-  const { setPreview } = usePreview();
   const navigate = useNavigate();
   const clickHandler = () => {
-    setPreview(movie.id);
     window.scrollTo(0, 0);
     navigate('/preview/tvshow/' + movie.id);
     // This will navigate to the preview page with the selected movie's ID

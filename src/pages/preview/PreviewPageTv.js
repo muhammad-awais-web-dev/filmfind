@@ -3,11 +3,14 @@ import styles from './PreviewPage.module.css';
 import { useParams } from 'react-router-dom';
 import { tvSerieDetail } from '../../API/tmbd';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PreviewPageTv() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [tvShow, setTvShow] = useState(null);
   const [cast, setCast] = useState(null);
+  const [similarShows, setSimilarShows] = useState(null);
 
   useEffect(() => {
     const fetchTvShow = async () => {
@@ -15,18 +18,21 @@ function PreviewPageTv() {
       setTvShow(data);
       const data2 = await tvSerieDetail(id + '/credits');
       setCast(data2.cast);
+      const data3 = await tvSerieDetail(id + '/similar');
+      setSimilarShows(data3.results);
     };
     fetchTvShow();
   }, [id]);
 
   return (
-    <main className={styles.previewPage}>
-      <section className={styles.basicInfo} style={{ background:  `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://image.tmdb.org/t/p/original/${tvShow?.backdrop_path}) center/cover no-repeat` }}>
+    <main className={styles.tvPreviewContainer}>
+      <section className={styles.tvHeroSection} style={{ background:  `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://image.tmdb.org/t/p/original/${tvShow?.backdrop_path}) center/cover no-repeat` }}>
           {id ? (
-            <div>
-              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShow?.poster_path}`} alt={tvShow?.name} />
-              <div>
+            <div className={styles.tvMainInfo}>
+              <img className={styles.tvPosterImage} src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShow?.poster_path}`} alt={tvShow?.name} />
+              <div className={styles.tvDetailsContainer}>
                 <h1>{tvShow?.name}</h1>
+                <span>First Air Date: {tvShow?.first_air_date}</span>
                 <span style={{ color: tvShow?.status === 'Ended' ? '#ef4444' : '#4ade80' }} >{tvShow?.status}</span>
                 <span>{tvShow?.genres.map(genre => genre.name).join(', ')}</span>
                   <div className={styles.voteIndicator}
@@ -50,7 +56,7 @@ function PreviewPageTv() {
             <p>No movie selected for preview.</p></>
           )}
       </section>
-      <section className={styles.castList}>
+      {cast?.length > 0 && <section className={styles.castList}>
         <h2>Cast</h2>
         <div className={styles.castCards}>
           {cast?.slice(0, 10).map(member => (
@@ -63,18 +69,14 @@ function PreviewPageTv() {
             </div>
           ))}
         </div>
-      </section>
+      </section> }
       <section className={styles.seasonList}>
         <h2>Seasons</h2>
         <div className={styles.seasonCards}>
           {tvShow?.seasons.map(season => (
             <div key={season.id} className={styles.seasonCard}>
-              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${season.poster_path}`} alt={season.name} />
+              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${season.poster_path}`} alt={season.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
               <div className={styles.seasonInfo}>
-                <h3>{season.name}</h3>
-                <span>{season.air_date}</span>
-                <p>{season.overview}</p>
-                <span>Episodes: {season.episode_count}</span>
                 <div className={styles.voteIndicatorSeason}
                   style={{background: `conic-gradient(${season?.vote_average >= 7 ? '#4ade80' : season?.vote_average >= 5 ? '#fbbf24' : '#ef4444'} ${(season?.vote_average / 10) * 360}deg, #e5e7eb 0deg)`}}>
                   <div className={styles.voteIndicatorSeasonFill}
@@ -82,6 +84,33 @@ function PreviewPageTv() {
                     {Math.round(season?.vote_average * 10)}%
                   </div>
                 </div>
+                <h3>{season.name}</h3>
+                <span>{season.air_date}</span>
+                <span>Episodes: {season.episode_count}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className={styles.similarShows}>
+        <h2>Similar Shows</h2>
+        <div className={styles.seasonCards}>
+          {similarShows?.map(show => (
+            <div key={show.id} className={styles.seasonCard} onClick={() => {
+              window.scrollTo(0, 0);
+              navigate('/preview/tvshow/' + show.id);
+            }}>
+              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${show.poster_path}`} alt={show.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
+              <div className={styles.similarShowInfo}>
+                <div className={styles.voteIndicatorSeason}
+                  style={{background: `conic-gradient(${show?.vote_average >= 7 ? '#4ade80' : show?.vote_average >= 5 ? '#fbbf24' : '#ef4444'} ${(show?.vote_average / 10) * 360}deg, #e5e7eb 0deg)`}}>
+                  <div className={styles.voteIndicatorSeasonFill}
+                    style={{color: show?.vote_average >= 7 ? '#4ade80' : show?.vote_average >= 5 ? '#fbbf24' : '#ef4444'}}>
+                    {Math.round(show?.vote_average * 10)}%
+                  </div>
+                </div>
+                <h3>{show.name}</h3>
+                <span>{show.first_air_date}</span>
               </div>
             </div>
           ))}
