@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './PreviewPage.module.css';
+import styles from './PagePreviewTv.module.css';
 import { useParams } from 'react-router-dom';
 import { tvSerieDetail } from '../../API/tmbd';
 import { useEffect, useState } from 'react';
