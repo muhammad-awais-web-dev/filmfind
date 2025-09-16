@@ -2,35 +2,71 @@ import React from 'react'
 import styles from './TV.module.css'
 import TvCard from '../../components/TvCard';
 import {tv} from '../../API/tmbd';
-import { useState } from 'react';
-
-const tvAiringToday = await tv('airing_today');
-const tvOnTheAir = await tv('on_the_air');
-const tvPopular = await tv('popular');
-const tvTopRated = await tv('top_rated');
-
+import { useState, useEffect } from 'react';
 
 function TV() {
+  const [selectedList, setSelectedList] = useState('airing_today');
+  const [tvAiringToday, setTvAiringToday] = useState({ results: [] });
+  const [tvOnTheAir, setTvOnTheAir] = useState({ results: [] });
+  const [tvPopular, setTvPopular] = useState({ results: [] });
+  const [tvTopRated, setTvTopRated] = useState({ results: [] });
+  const [loading, setLoading] = useState(true);
 
-    const [selectedList, setSelectedList] = useState('airing_today');
+  useEffect(() => {
+    const fetchTvShows = async () => {
+      try {
+        const [airingToday, onTheAir, popular, topRated] = await Promise.all([
+          tv('airing_today'),
+          tv('on_the_air'),
+          tv('popular'),
+          tv('top_rated')
+        ]);
+        
+        setTvAiringToday(airingToday || { results: [] });
+        setTvOnTheAir(onTheAir || { results: [] });
+        setTvPopular(popular || { results: [] });
+        setTvTopRated(topRated || { results: [] });
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching TV shows:', error);
+        // Set empty results on error
+        setTvAiringToday({ results: [] });
+        setTvOnTheAir({ results: [] });
+        setTvPopular({ results: [] });
+        setTvTopRated({ results: [] });
+        setLoading(false);
+      }
+    };
 
-    let left;
-    switch (selectedList) {
-        case 'airing_today':
-            left = 0;
-            break;
-        case 'on_the_air':
-            left = '25%';
-            break;
-        case 'popular':
-            left = '50%';
-            break;
-        case 'top_rated':
-            left = '75%';
-            break;
-        default:
-            left = 0;
-    }
+    fetchTvShows();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className={styles.movies}>
+        <h2 className={styles.heading}>TV Shows</h2>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
+  let left;
+  switch (selectedList) {
+    case 'airing_today':
+      left = 0;
+      break;
+    case 'on_the_air':
+      left = '25%';
+      break;
+    case 'popular':
+      left = '50%';
+      break;
+    case 'top_rated':
+      left = '75%';
+      break;
+    default:
+      left = 0;
+  }
 
   return (
     <section className={styles.movies}>

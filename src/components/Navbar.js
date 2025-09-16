@@ -76,7 +76,7 @@ function Navbar() {
                 People <i className='fa-solid fa-caret-down'></i>
               </span>
               <ul className={styles.dropdownMenu}>
-                <li><Link to="/people/popular" className={styles.dropdownLink}>Popular People</Link></li>
+                <li><Link to="/peoples" className={styles.dropdownLink}>Popular People</Link></li>
               </ul>
             </li>
           </ul>

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './PagePreviewTv.module.css';
+import styles from './PagePreview.module.css';
 import { useParams } from 'react-router-dom';
 import { tvSerieDetail } from '../../API/tmbd';
 import { useEffect, useState } from 'react';
@@ -29,7 +29,7 @@ function PreviewPageTv() {
       <section className={styles.tvHeroSection} style={{ background:  `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://image.tmdb.org/t/p/original/${tvShow?.backdrop_path}) center/cover no-repeat` }}>
           {id ? (
             <div className={styles.tvMainInfo}>
-              <img className={styles.tvPosterImage} src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShow?.poster_path}`} alt={tvShow?.name} />
+              <img className={styles.tvPosterImage} src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShow?.poster_path}`} alt={tvShow?.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
               <div className={styles.tvDetailsContainer}>
                 <h1>{tvShow?.name}</h1>
                 <span>First Air Date: {tvShow?.first_air_date}</span>
@@ -60,8 +60,11 @@ function PreviewPageTv() {
         <h2>Cast</h2>
         <div className={styles.castCards}>
           {cast?.slice(0, 10).map(member => (
-            <div key={member.id} className={styles.castCard}>
-              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${member.profile_path}`} alt={member.name} />
+            <div key={member.id} className={styles.castCard} onClick={() => {
+              window.scrollTo(0, 0);
+              navigate('/person/' + member.id);
+            }} style={{cursor: 'pointer'}}>
+              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${member.profile_path}`} alt={member.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
               <div className={styles.castInfo}>
                 <h3>{member.name}</h3>
                 <span>{member.character}</span>

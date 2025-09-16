@@ -1,36 +1,72 @@
 import React from 'react'
 import styles from './Movies.module.css'
 import MovieCard from '../../components/MovieCard';
-import { movie} from '../../API/tmbd';
-import { useState } from 'react';
-
-const moviesNowPlaying = await movie('now_playing');
-const moviesPopular = await movie('popular');
-const moviesTopRated = await movie('top_rated');
-const moviesUpcoming = await movie('upcoming');
-
+import { movie } from '../../API/tmbd';
+import { useState, useEffect } from 'react';
 
 function Movies() {
+  const [selectedList, setSelectedList] = useState('now_playing');
+  const [moviesNowPlaying, setMoviesNowPlaying] = useState({ results: [] });
+  const [moviesPopular, setMoviesPopular] = useState({ results: [] });
+  const [moviesTopRated, setMoviesTopRated] = useState({ results: [] });
+  const [moviesUpcoming, setMoviesUpcoming] = useState({ results: [] });
+  const [loading, setLoading] = useState(true);
 
-    const [selectedList, setSelectedList] = useState('now_playing');
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const [nowPlaying, popular, topRated, upcoming] = await Promise.all([
+          movie('now_playing'),
+          movie('popular'),
+          movie('top_rated'),
+          movie('upcoming')
+        ]);
+        
+        setMoviesNowPlaying(nowPlaying || { results: [] });
+        setMoviesPopular(popular || { results: [] });
+        setMoviesTopRated(topRated || { results: [] });
+        setMoviesUpcoming(upcoming || { results: [] });
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching movies:', error);
+        // Set empty results on error
+        setMoviesNowPlaying({ results: [] });
+        setMoviesPopular({ results: [] });
+        setMoviesTopRated({ results: [] });
+        setMoviesUpcoming({ results: [] });
+        setLoading(false);
+      }
+    };
 
-    let left;
-    switch (selectedList) {
-        case 'now_playing':
-            left = 0;
-            break;
-        case 'popular':
-            left = '25%';
-            break;
-        case 'top_rated':
-            left = '50%';
-            break;
-        case 'upcoming':
-            left = '75%';
-            break;
-        default:
-            left = 0;
-    }
+    fetchMovies();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className={styles.movies}>
+        <h2 className={styles.heading}>Movies</h2>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
+  let left;
+  switch (selectedList) {
+    case 'now_playing':
+      left = 0;
+      break;
+    case 'popular':
+      left = '25%';
+      break;
+    case 'top_rated':
+      left = '50%';
+      break;
+    case 'upcoming':
+      left = '75%';
+      break;
+    default:
+      left = 0;
+  }
 
   return (
     <section className={styles.movies}>

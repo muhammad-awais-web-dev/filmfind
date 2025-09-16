@@ -2,16 +2,42 @@ import React from 'react'
 import styles from './Trending.module.css'
 import MovieCard from '../../components/MovieCard';
 import { trending } from '../../API/tmbd';
-
-
-const trendingMoviesDay = await trending('day');
-const trendingMoviesWeek = await trending('week');
-
-
+import { useState, useEffect } from 'react';
 
 function Trending() {
+  const [selectedDuration, setSelectedDuration] = useState('day');
+  const [trendingMoviesDay, setTrendingMoviesDay] = useState({ results: [] });
+  const [trendingMoviesWeek, setTrendingMoviesWeek] = useState({ results: [] });
+  const [loading, setLoading] = useState(true);
 
-    const [selectedDuration, setSelectedDuration] = React.useState('day');
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const dayData = await trending('day');
+        const weekData = await trending('week');
+        setTrendingMoviesDay(dayData || { results: [] });
+        setTrendingMoviesWeek(weekData || { results: [] });
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching trending data:', error);
+        // Set empty results on error
+        setTrendingMoviesDay({ results: [] });
+        setTrendingMoviesWeek({ results: [] });
+        setLoading(false);
+      }
+    };
+
+    fetchTrending();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className={styles.trending}>
+        <h2 className={styles.heading}>Trending</h2>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.trending}>
