@@ -57,16 +57,22 @@
 .company{
     background-color: aliceblue;
 }
+.seasonList{
+    padding: 20px 0;
+}
+.seasonList h2{
+    font-size: 2rem;
+}
 .seasonCards{
     display: flex;
-    flex-direction: column;
     gap: 20px;
+    overflow-x: auto;
 }
 .seasonCard{
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
+    align-items: flex-start;
     padding: 20px;
     background-color: var(--background-secondary);
     border-radius: 10px;
@@ -75,16 +81,17 @@
 .seasonInfo{
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 .seasonCard img{
-    width: 150px;
+    height: 250px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 .voteIndicatorSeason{
     width: 35px;
     height: 35px;
+    margin-top: -17.5px;
+    margin-left: 5px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -109,14 +116,14 @@
     gap: 20px;
     padding: 20px;
 }
-.castCards::-webkit-scrollbar {
+.castCards::-webkit-scrollbar, .seasonCards::-webkit-scrollbar {
     height: 10px;
 }
-.castCards::-webkit-scrollbar-thumb {
+.castCards::-webkit-scrollbar-thumb , .seasonCards::-webkit-scrollbar-thumb {
     background-color: darkgray;
     border-radius: 10px;
 }
-.castCards::-webkit-scrollbar-track {
+.castCards::-webkit-scrollbar-track , .seasonCards::-webkit-scrollbar-track {
     background-color: rgb(68, 68, 68);
     border-radius: 10px;
 }
