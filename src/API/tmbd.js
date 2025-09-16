@@ -46,4 +46,12 @@ export async function tv(list = 'airing_today') {
     }
 }
 
-
+export async function tvSerieDetail(id = '') {
+    try {
+        const res = await fetch(`${BASE_URL}/tv/${id}?language=en-US&page=1&api_key=${API_KEY}`, options);
+        const json = await res.json();
+        return json;
+    } catch (err) {
+        return console.error(err);
+    }
+}
