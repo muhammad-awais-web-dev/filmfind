@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './PagePreviewTv.module.css';
 import { useParams } from 'react-router-dom';
-import { tvSerieDetail } from '../../API/tmbd';
+import { API } from '../../API/tmbd';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,11 +14,11 @@ function PreviewPageTv() {
 
   useEffect(() => {
     const fetchTvShow = async () => {
-      const data = await tvSerieDetail(id);
+      const data = await API(`tv/${id}`);
       setTvShow(data);
-      const data2 = await tvSerieDetail(id + '/credits');
+      const data2 = await API(`tv/${id}/credits`);
       setCast(data2.cast);
-      const data3 = await tvSerieDetail(id + '/similar');
+      const data3 = await API(`tv/${id}/similar`);
       setSimilarShows(data3.results);
     };
     fetchTvShow();

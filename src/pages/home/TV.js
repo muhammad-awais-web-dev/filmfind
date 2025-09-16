@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './TV.module.css'
 import TvCard from '../../components/TvCard';
-import {tv} from '../../API/tmbd';
+import { API } from '../../API/tmbd';
 import { useState } from 'react';
 
-const tvAiringToday = await tv('airing_today');
-const tvOnTheAir = await tv('on_the_air');
-const tvPopular = await tv('popular');
-const tvTopRated = await tv('top_rated');
+const tvAiringToday = await API('tv/airing_today');
+const tvOnTheAir = await API('tv/on_the_air');
+const tvPopular = await API('tv/popular');
+const tvTopRated = await API('tv/top_rated');
 
 
 function TV() {
@@ -37,10 +37,10 @@ function TV() {
       <h2 className={styles.heading}>Tv Shows</h2>
       <div className={styles.DurationSelector}  >
               <div className={styles.highlight} style={{ left }} ></div>
-              <p className={styles.duration} onClick={() => {setSelectedList('airing_today')}} >Airing Today</p>
-              <p className={styles.duration} onClick={() => setSelectedList('on_the_air')} >On The Air</p>
-              <p className={styles.duration} onClick={() => setSelectedList('popular')} >Popular</p>
-              <p className={styles.duration} onClick={() => setSelectedList('top_rated')} >Top Rated</p>
+              <p className={styles.duration} style={{color : `${selectedList === "airing_today"? "white" : "black"}` } } onClick={() => {setSelectedList('airing_today')}} >Airing Today</p>
+              <p className={styles.duration} style={{color : `${selectedList === "on_the_air"? "white" : "black"}` } } onClick={() => setSelectedList('on_the_air')} >On The Air</p>
+              <p className={styles.duration} style={{color : `${selectedList === "popular"? "white" : "black"}` } } onClick={() => setSelectedList('popular')} >Popular</p>
+              <p className={styles.duration} style={{color : `${selectedList === "top_rated"? "white" : "black"}` } } onClick={() => setSelectedList('top_rated')} >Top Rated</p>
             </div>
             <div style={{ display: selectedList === 'airing_today' ? 'flex' : 'none' }} className={styles.trendingList}>
               {tvAiringToday.results.map( (movie) => (

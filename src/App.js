@@ -11,7 +11,7 @@ import { SearchProvider } from './SearchContext';
 function App() {
   return (
     <SearchProvider>
-      <BrowserRouter>
+      <BrowserRouter basename='/filmfind'>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />}/>

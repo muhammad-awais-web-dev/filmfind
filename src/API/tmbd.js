@@ -7,48 +7,10 @@ const options = {
     Authorization: `Bearer ${process.env.AUTHORIZATION}`
   }
 };
-export async function fetchPopularMovies(page = 1){
-    try {
-        const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`, options);
-        const json = await res.json();
-        return json;
-    } catch (err) {
-        return console.error(err);
-    }
-}
 
-export async function trending(duration = 'day') {
+export async function API( option = '') {
     try {
-        const res = await fetch(`${BASE_URL}/trending/all/${duration}?api_key=${API_KEY}`, options);
-        const json = await res.json();
-        return json;
-    } catch (err) {
-        return console.error(err);
-    }
-}
-
-export async function movie(list = 'now_playing') {
-    try {
-        const res = await fetch(`${BASE_URL}/movie/${list}?language=en-US&page=1&api_key=${API_KEY}`, options);
-        const json = await res.json();
-        return json;
-    } catch (err) {
-        return console.error(err);
-    }
-}
-export async function tv(list = 'airing_today') {
-    try {
-        const res = await fetch(`${BASE_URL}/tv/${list}?language=en-US&page=1&api_key=${API_KEY}`, options);
-        const json = await res.json();
-        return json;
-    } catch (err) {
-        return console.error(err);
-    }
-}
-
-export async function tvSerieDetail(id = '') {
-    try {
-        const res = await fetch(`${BASE_URL}/tv/${id}?language=en-US&page=1&api_key=${API_KEY}`, options);
+        const res = await fetch(`${BASE_URL}/${option}?api_key=${API_KEY}`, options);
         const json = await res.json();
         return json;
     } catch (err) {

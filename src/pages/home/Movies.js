@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './Movies.module.css'
 import MovieCard from '../../components/MovieCard';
-import { movie} from '../../API/tmbd';
+import { API } from '../../API/tmbd';
 import { useState } from 'react';
 
-const moviesNowPlaying = await movie('now_playing');
-const moviesPopular = await movie('popular');
-const moviesTopRated = await movie('top_rated');
-const moviesUpcoming = await movie('upcoming');
+const moviesNowPlaying = await API(`movie/now_playing`);
+const moviesPopular = await API(`movie/popular`);
+const moviesTopRated = await API(`movie/top_rated`);
+const moviesUpcoming = await API(`movie/upcoming`);
 
 
 function Movies() {
@@ -37,10 +37,10 @@ function Movies() {
       <h2 className={styles.heading}>Movies</h2>
       <div className={styles.DurationSelector}  >
               <div className={styles.highlight} style={{ left }} ></div>
-              <p className={styles.duration} onClick={() => {setSelectedList('now_playing')}} >Now Playing</p>
-              <p className={styles.duration} onClick={() => setSelectedList('popular')} >Popular</p>
-              <p className={styles.duration} onClick={() => setSelectedList('top_rated')} >Top Rated</p>
-              <p className={styles.duration} onClick={() => setSelectedList('upcoming')} >Upcoming</p>
+              <p className={styles.duration} style={{color : `${selectedList === "now_playing"? "white" : "black"}` } } onClick={() => {setSelectedList('now_playing')}} >Now Playing</p>
+              <p className={styles.duration} style={{color : `${selectedList === "popular"? "white" : "black"}` } } onClick={() => setSelectedList('popular')} >Popular</p>
+              <p className={styles.duration} style={{color : `${selectedList === "top_rated"? "white" : "black"}` } } onClick={() => setSelectedList('top_rated')} >Top Rated</p>
+              <p className={styles.duration} style={{color : `${selectedList === "upcoming"? "white" : "black"}` } } onClick={() => setSelectedList('upcoming')} >Upcoming</p>
             </div>
             <div style={{ display: selectedList === 'now_playing' ? 'flex' : 'none' }} className={styles.trendingList}>
               {moviesNowPlaying.results.map( (movie) => (
