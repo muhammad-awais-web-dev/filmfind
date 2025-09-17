@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-function Hero({ setSearch }) {
+function Hero() {
 
     const [searchQuery, setSearchQuery] = useState('')
     const navigate = useNavigate();
@@ -21,8 +21,7 @@ function Hero({ setSearch }) {
         if (searchQuery.trim()) {
         // Handle search functionality here
         console.log('Searching for:', searchQuery)
-        setSearch(searchQuery);
-        navigate(`/search-result`)
+        navigate(`/search-result/${searchQuery.replace(/\s+/g, '+')}`);
         // You can add navigation to search results page later
         }
     }

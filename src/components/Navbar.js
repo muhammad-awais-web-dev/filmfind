@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
-import { useSearch } from '../SearchContext';
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState('')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navigate = useNavigate();
-  const { setSearch } = useSearch();
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value)
@@ -18,8 +16,7 @@ function Navbar() {
     if (searchQuery.trim()) {
       // Handle search functionality here
       console.log('Searching for:', searchQuery)
-      setSearch(searchQuery); // This will now come from context
-      navigate(`/search-result`);
+        navigate(`/search-result/${searchQuery.replace(/\s+/g, '+')}`);
       // You can add navigation to search results page later
     }
   }
