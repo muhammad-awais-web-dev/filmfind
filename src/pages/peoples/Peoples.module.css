@@ -1,0 +1,95 @@
+.peoplesContainer {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  padding: 40px 20px;
+}
+
+.peoplesSection {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.heading {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-bottom: 3px solid var(--primary-red);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.peopleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+@media (max-width: 1024px) {
+  .peoplesContainer {
+    padding: 30px 15px;
+  }
+  
+  .peoplesSection {
+    width: 95%;
+  }
+  
+  .heading {
+    font-size: 2.4rem;
+  }
+  
+  .peopleGrid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .peoplesContainer {
+    padding: 20px 10px;
+  }
+  
+  .heading {
+    font-size: 2rem;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+  }
+  
+  .peopleGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.6rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .peopleGrid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+}

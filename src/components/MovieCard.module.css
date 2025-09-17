@@ -1,27 +1,36 @@
 .movieCard{
     height: fit-content;
     padding: 10px 0;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease;
     -webkit-user-select: none; /* Chrome, Safari, newer Opera */
     -moz-user-select: none;    /* Firefox */
     -ms-user-select: none;     /* Internet Explorer/Edge */
     user-select: none;         /* Standard */
+    border-radius: 12px;
+    background-color: var(--secondary-bg);
 }
 .movieCard:hover{
     transform: translateY(-5px);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background-color: var(--tertiary-bg);
 }
 .posterImage{
     width: 200px;
     border-radius: 10px;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+.movieCard:hover .posterImage {
+    transform: scale(1.05);
 }
 .title{
     font-size: 1.2rem;
     font-weight: bold;
     margin: 10px 0 5px 0;
     color: var(--text-primary);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 .voteIndicator{
     width: 30px;
@@ -33,17 +42,19 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .voteIndicatorFill{
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 10px;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 @media (max-width: 900px) {
     .movieCard{

@@ -1,0 +1,113 @@
+.personCard{
+    height: fit-content;
+    padding: 15px;
+    transition: all 0.3s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 12px;
+    background-color: var(--secondary-bg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.personCard:hover{
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background-color: var(--tertiary-bg);
+}
+
+.profileImage{
+    width: 150px;
+    height: 225px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.personCard:hover .profileImage {
+    transform: scale(1.05);
+}
+
+.personInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.name{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.3;
+}
+
+.knownFor {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.popularity {
+    font-size: 0.8rem;
+    color: var(--primary-red);
+    font-weight: 600;
+}
+
+.knownForMovies {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .personCard {
+        min-width: 150px;
+        padding: 12px;
+    }
+    
+    .profileImage {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .name {
+        font-size: 1rem;
+    }
+    
+    .knownFor {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .personCard {
+        min-width: 130px;
+        padding: 10px;
+    }
+    
+    .profileImage {
+        width: 100px;
+        height: 150px;
+    }
+    
+    .name {
+        font-size: 0.9rem;
+    }
+    
+    .knownFor, .knownForMovies {
+        font-size: 0.7rem;
+    }
+}

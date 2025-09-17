@@ -23,7 +23,7 @@ function Home() {
                 {movies && movies.map(movie => (
                     <div key={movie.id} className="movie-item">
                         <h3>{movie.title}</h3>
-                        <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`} alt={movie.title} />
+                        <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`} alt={movie.title} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
                         <p>Release Date: {movie.release_date}</p>
                         <p>Rating: {movie.vote_average}</p>
                         </div>
