@@ -20,7 +20,6 @@ function MoviesList() {
       try {
         const  data  = await API (`${type}/${List}`, `page=${page}`);
         setResult(data || []);
-        console.log(data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching Results:', error);

@@ -21,7 +21,6 @@ function SearchResult() {
       try {
         const data = await API (`search/multi`, `query=${search}&page=${page}`);
         setSearchResult(data || []);
-        console.log(data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching Results:', error);
