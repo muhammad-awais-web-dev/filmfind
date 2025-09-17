@@ -15,7 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/search-result/:query' element={<SearchResult />}/>
+        <Route path='/search-result/:query/:page' element={<SearchResult />}/>
         <Route path='/preview/tvshow/:id' element={<PreviewPageTv />}/>
         <Route path='/preview/movie/:id' element={<PreviewPageMovie />}/>
         <Route path='/peoples' element={<Peoples />}/>

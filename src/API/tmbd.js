@@ -8,9 +8,9 @@ const options = {
   }
 };
 
-export async function API( option = '') {
+export async function API( option = '', additional = '') {
     try {
-        const res = await fetch(`${BASE_URL}/${option}?api_key=${API_KEY}`, options);
+        const res = await fetch(`${BASE_URL}/${option}?api_key=${API_KEY}&${additional}`, options);
         const json = await res.json();
         return json;
     } catch (err) {

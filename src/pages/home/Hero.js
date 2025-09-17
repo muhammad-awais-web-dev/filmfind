@@ -21,7 +21,7 @@ function Hero() {
         if (searchQuery.trim()) {
         // Handle search functionality here
         console.log('Searching for:', searchQuery)
-        navigate(`/search-result/${searchQuery.replace(/\s+/g, '+')}`);
+        navigate(`/search-result/${searchQuery.replace(/\s+/g, '+')}/1`);
         // You can add navigation to search results page later
         }
     }
