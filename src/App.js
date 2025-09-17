@@ -2,17 +2,20 @@ import './App.css';
 import { Route,Routes, BrowserRouter } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import SearchResult from './pages/searchResult/SearchResult';
 import PreviewPageTv from './pages/preview/PreviewPageTv';
 import PreviewPageMovie from './pages/preview/PreviewPageMovie';
 import Peoples from './pages/peoples/Peoples';
 import PersonDetail from './pages/peoples/PersonDetail';
 import List from './pages/Lists/List';
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />}/>
@@ -23,6 +26,7 @@ function App() {
         <Route path='/peoples' element={<Peoples />}/>
         <Route path='/person/:id' element={<PersonDetail />}/>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

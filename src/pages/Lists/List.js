@@ -11,7 +11,7 @@ function MoviesList() {
   
     const [Result, setResult] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(parseInt(useParams().page) || 1);
+    const page = parseInt(useParams().page) || 1;
   const type = useParams().type;
   const List = useParams().list;
 
@@ -60,8 +60,8 @@ function MoviesList() {
             <h1 className={styles.heading} > {List.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} </h1>
             <p>Page {page} of {Result.total_pages}</p>
             <div className={styles.pageNav} >
-                <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => setPage(page - 1)}><i className="fa-solid fa-chevron-left"></i> Previous</button>
-                <button className={page === Result.total_pages ? styles.disabled : styles.enabled} disabled={page === Result.total_pages} onClick={() => setPage(page + 1)}> Next <i className="fa-solid fa-chevron-right"></i></button>
+                <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => navigate(`/lists/${type}/${List}/${page - 1}`)}><i className="fa-solid fa-chevron-left"></i> <span>Previous</span></button>
+                <button className={page === Result.total_pages ? styles.disabled : styles.enabled} disabled={page === Result.total_pages} onClick={() => navigate(`/lists/${type}/${List}/${page + 1}`)}><span>Next</span> <i className="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
         {Result.results.map((item) => (
@@ -81,6 +81,11 @@ function MoviesList() {
             </div>
           </div>
         ))}
+        <p style={{ textAlign: 'center', margin: '20px 0' }} >Page {page} of {Result.total_pages}</p>
+        <div className={styles.pageNav}>
+          <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => navigate(`/lists/${type}/${List}/${page - 1}`)}><i className="fa-solid fa-chevron-left"></i> <span>Previous</span></button>
+          <button className={page === Result.total_pages ? styles.disabled : styles.enabled} disabled={page === Result.total_pages} onClick={() => navigate(`/lists/${type}/${List}/${page + 1}`)}><span>Next</span> <i className="fa-solid fa-chevron-right"></i></button>
+        </div>
       </section>
     </main>
   )

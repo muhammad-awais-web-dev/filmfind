@@ -21,7 +21,7 @@ function Card(  { movie } ) {
         </div>
       </div>
       <h3 className={styles.title}>{movie.title ? movie.title : movie.name}</h3>
-      <p>Release Date: {movie.release_date}</p>
+      <p>Release Date: <br />{movie.release_date ? movie.release_date : movie.first_air_date}</p>
     </div>
   )
 }

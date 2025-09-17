@@ -1,0 +1,115 @@
+.footer{
+    width: 100%;
+    margin-top: 40px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    font-size: 14px;
+}
+.footerContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: var(--text-primary);
+}
+.footerContent div{
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    height: -webkit-fill-available;
+    text-align: center;
+}
+.footerTitle{    
+  text-decoration: none;
+  color: var(--primary-red);
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.footerTitle:hover {
+  color: var(--hover-red);
+}
+.footerTitle{
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+}
+.footerDescription{
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+.footerTMDBLogo{
+    height: 40px;
+    margin-top: 5px;
+}
+.footerLinks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.footerQuickLinksTitle{
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+.footerLinks ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.footerLink{
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 3px;
+}
+.footerLink:hover {
+    color: var(--hover-red);
+}
+.footerMadeBy{
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+.footerMadeByName{
+    text-decoration: none;
+    color: var(--primary-red);
+    transition: color 0.3s ease;
+    font-size: 1.2rem;
+}
+.footerSocialLinks a, .footerSocialLinks i{
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    font-size: 1.5rem;
+    padding: 5px;
+}
+.footerSocialLinks a:hover, .footerSocialLinks i:hover {
+    color: var(--hover-red);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.footerBottom{
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--secondary-bg);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+}

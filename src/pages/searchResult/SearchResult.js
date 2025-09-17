@@ -10,7 +10,7 @@ function SearchResult() {
   const navigate = useNavigate();
   const [SearchResult, setSearchResult] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(parseInt(useParams().page) || 1);
+  const page = (parseInt(useParams().page) || 1);
 
   const { query } = useParams();
   const search = query.replace(/\+/g, '%20');
@@ -61,8 +61,8 @@ function SearchResult() {
             <h1 className={styles.heading} > Search Reslults </h1>
             <p>Page {page} of {SearchResult.total_pages}</p>
             <div className={styles.pageNav} >
-                <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => setPage(page - 1)}><i className="fa-solid fa-chevron-left"></i> Previous</button>
-                <button className={page === SearchResult.total_pages ? styles.disabled : styles.enabled} disabled={page === SearchResult.total_pages} onClick={() => setPage(page + 1)}> Next <i className="fa-solid fa-chevron-right"></i></button>
+                <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => navigate(`/search-result/${search}/${page - 1}`)}><i className="fa-solid fa-chevron-left"></i> <span>Previous</span></button>
+                <button className={page === SearchResult.total_pages ? styles.disabled : styles.enabled} disabled={page === SearchResult.total_pages} onClick={() => navigate(`/search-result/${search}/${page + 1}`)}><span>Next</span> <i className="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
         {SearchResult.results.map((item) => (
@@ -84,8 +84,8 @@ function SearchResult() {
         ))}
         <p style={{ textAlign: 'center', margin: '20px 0' }} >Page {page} of {SearchResult.total_pages}</p>
         <div className={styles.pageNav}>
-          <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => setPage(page - 1)}><i className="fa-solid fa-chevron-left"></i> Previous</button>
-          <button className={page === SearchResult.total_pages ? styles.disabled : styles.enabled} disabled={page === SearchResult.total_pages} onClick={() => setPage(page + 1)}> Next <i className="fa-solid fa-chevron-right"></i></button>
+          <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => navigate(`/search-result/${search}/${page - 1}`)}><i className="fa-solid fa-chevron-left"></i> <span>Previous</span></button>
+          <button className={page === SearchResult.total_pages ? styles.disabled : styles.enabled} disabled={page === SearchResult.total_pages} onClick={() => navigate(`/search-result/${search}/${page + 1}`)}><span>Next</span> <i className="fa-solid fa-chevron-right"></i></button>
         </div>
       </section>
     </main>

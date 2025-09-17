@@ -62,10 +62,10 @@ function Navbar() {
                 TV Shows <i className='fa-solid fa-caret-down'></i>
               </span>
               <ul className={styles.dropdownMenu}>
-                <li><Link to="/lists/tvshow/popular/1" className={styles.dropdownLink}>Popular</Link></li>
-                <li><Link to="/lists/tvshow/top_rated/1" className={styles.dropdownLink}>Top Rated</Link></li>
-                <li><Link to="/lists/tvshow/on_the_air/1" className={styles.dropdownLink}>On Air</Link></li>
-                <li><Link to="/lists/tvshow/airing_today/1" className={styles.dropdownLink}>Airing Today</Link></li>
+                <li><Link to="/lists/tv/popular/1" className={styles.dropdownLink}>Popular</Link></li>
+                <li><Link to="/lists/tv/top_rated/1" className={styles.dropdownLink}>Top Rated</Link></li>
+                <li><Link to="/lists/tv/on_the_air/1" className={styles.dropdownLink}>On Air</Link></li>
+                <li><Link to="/lists/tv/airing_today/1" className={styles.dropdownLink}>Airing Today</Link></li>
               </ul>
             </li>
             <li className={`${styles.menuItem} ${styles.dropdown}`}>

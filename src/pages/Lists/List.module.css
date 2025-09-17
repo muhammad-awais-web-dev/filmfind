@@ -36,6 +36,7 @@ button.enabled{
     border-radius: 5px;
     cursor: pointer;
 }
+
 .resultItem{
     background-color: var(--secondary-bg);
     padding: 15px;
@@ -81,4 +82,14 @@ button.enabled{
 .itemDetails::-webkit-scrollbar-track {
     background-color: var(--secondary-bg);
     border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .pageNav span{
+        display: none;
+    }
+    .itemDetails{
+        height: auto;
+    }
+    
 }

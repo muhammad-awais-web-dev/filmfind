@@ -82,3 +82,12 @@ button.enabled{
     background-color: var(--secondary-bg);
     border-radius: 10px;
 }
+@media (max-width: 768px) {
+    .pageNav span{
+        display: none;
+    }
+    .itemDetails{
+        height: auto;
+    }
+    
+}
