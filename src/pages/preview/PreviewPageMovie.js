@@ -58,7 +58,10 @@ function PreviewPageMovie() {
         <h2>Cast</h2>
         <div className={styles.castCards}>
           {cast?.slice(0, 10).map(member => (
-            <div key={member.id} className={styles.castCard}>
+            <div key={member.id} className={styles.castCard} onClick={() => {
+              window.scrollTo(0, 0);
+              navigate('/person/' + member.id);
+            }}>
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${member.profile_path}`} alt={member.name} />
               <div className={styles.castInfo}>
                 <h3>{member.name}</h3>

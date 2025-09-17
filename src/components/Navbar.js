@@ -51,10 +51,10 @@ function Navbar() {
                 Movies <i className='fa-solid fa-caret-down'></i>
               </span>
               <ul className={styles.dropdownMenu}>
-                <li><Link to="/movies/popular" className={styles.dropdownLink}>Popular</Link></li>
-                <li><Link to="/movies/top-rated" className={styles.dropdownLink}>Top Rated</Link></li>
-                <li><Link to="/movies/upcoming" className={styles.dropdownLink}>Upcoming</Link></li>
-                <li><Link to="/movies/now-playing" className={styles.dropdownLink}>Now Playing</Link></li>
+                <li><Link to="/lists/movie/popular/1" className={styles.dropdownLink}>Popular</Link></li>
+                <li><Link to="/lists/movie/top_rated/1" className={styles.dropdownLink}>Top Rated</Link></li>
+                <li><Link to="/lists/movie/upcoming/1" className={styles.dropdownLink}>Upcoming</Link></li>
+                <li><Link to="/lists/movie/now_playing/1" className={styles.dropdownLink}>Now Playing</Link></li>
               </ul>
             </li>
             <li className={`${styles.menuItem} ${styles.dropdown}`}>
@@ -62,10 +62,10 @@ function Navbar() {
                 TV Shows <i className='fa-solid fa-caret-down'></i>
               </span>
               <ul className={styles.dropdownMenu}>
-                <li><Link to="/tv/popular" className={styles.dropdownLink}>Popular</Link></li>
-                <li><Link to="/tv/top-rated" className={styles.dropdownLink}>Top Rated</Link></li>
-                <li><Link to="/tv/on-air" className={styles.dropdownLink}>On Air</Link></li>
-                <li><Link to="/tv/airing-today" className={styles.dropdownLink}>Airing Today</Link></li>
+                <li><Link to="/lists/tvshow/popular/1" className={styles.dropdownLink}>Popular</Link></li>
+                <li><Link to="/lists/tvshow/top_rated/1" className={styles.dropdownLink}>Top Rated</Link></li>
+                <li><Link to="/lists/tvshow/on_the_air/1" className={styles.dropdownLink}>On Air</Link></li>
+                <li><Link to="/lists/tvshow/airing_today/1" className={styles.dropdownLink}>Airing Today</Link></li>
               </ul>
             </li>
             <li className={`${styles.menuItem} ${styles.dropdown}`}>

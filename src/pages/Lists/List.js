@@ -1,54 +1,53 @@
 import React from 'react'
-import styles from './SearchResult.module.css'
+import styles from './List.module.css'
 import { useParams } from 'react-router-dom';
 import { API } from '../../API/tmbd';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function SearchResult() {
+function MoviesList() {
 
   const navigate = useNavigate();
-  const [SearchResult, setSearchResult] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(parseInt(useParams().page) || 1);
-
-  const { query } = useParams();
-  const search = query.replace(/\+/g, '%20');
-
+  
+    const [Result, setResult] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(parseInt(useParams().page) || 1);
+  const type = useParams().type;
+  const List = useParams().list;
 
   useEffect(() => {
-    const fetchTvShows = async () => {
+    const movies = async () => {
       try {
-        const data = await API (`search/multi`, `query=${search}&page=${page}`);
-        setSearchResult(data || []);
+        const  data  = await API (`${type}/${List}`, `page=${page}`);
+        setResult(data || []);
         console.log(data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching Results:', error);
         // Set empty results on error
-        setSearchResult([]);
+        setResult([]);
         setLoading(false);
       }
     };
 
-    fetchTvShows();
-  }, [search, page]);
+    movies();
+  }, [type, List, page]);
 
   if (loading) {
     return (
       <section >
-        <h1 className={styles.heading}>Search Results</h1>
+        <h1 className={styles.heading} > {List.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} </h1>
         <p>Loading...</p>
       </section>
     );
   }
 
-  if (SearchResult && SearchResult.length === 0) {
+  if (Result && Result.length === 0) {
   return (
     <main>
       <section>
-        <h1 className={styles.heading}>Search Results</h1>
-        <p>No results found for: {search}</p>
+          <h1 className={styles.heading} > {List.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} </h1>
+        <p>You Have Reached the End of the List</p>
       </section>
     </main>
   )
@@ -57,15 +56,15 @@ function SearchResult() {
   return (
     <main className={styles.main}>
       <section className={styles.results}>
-      <div className={styles.topNav} >
-            <h1 className={styles.heading} > Search Reslults </h1>
-            <p>Page {page} of {SearchResult.total_pages}</p>
+        <div className={styles.topNav} >
+            <h1 className={styles.heading} > {List.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} </h1>
+            <p>Page {page} of {Result.total_pages}</p>
             <div className={styles.pageNav} >
                 <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => setPage(page - 1)}><i className="fa-solid fa-chevron-left"></i> Previous</button>
-                <button className={page === SearchResult.total_pages ? styles.disabled : styles.enabled} disabled={page === SearchResult.total_pages} onClick={() => setPage(page + 1)}> Next <i className="fa-solid fa-chevron-right"></i></button>
+                <button className={page === Result.total_pages ? styles.disabled : styles.enabled} disabled={page === Result.total_pages} onClick={() => setPage(page + 1)}> Next <i className="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
-        {SearchResult.results.map((item) => (
+        {Result.results.map((item) => (
           <div key={item.id} className={styles.resultItem} onClick={() => {
             if (item.media_type === 'movie') {
               navigate(`/preview/movie/${item.id}`);
@@ -82,14 +81,9 @@ function SearchResult() {
             </div>
           </div>
         ))}
-        <p style={{ textAlign: 'center', margin: '20px 0' }} >Page {page} of {SearchResult.total_pages}</p>
-        <div className={styles.pageNav}>
-          <button className={page === 1 ? styles.disabled : styles.enabled} disabled={page === 1} onClick={() => setPage(page - 1)}><i className="fa-solid fa-chevron-left"></i> Previous</button>
-          <button className={page === SearchResult.total_pages ? styles.disabled : styles.enabled} disabled={page === SearchResult.total_pages} onClick={() => setPage(page + 1)}> Next <i className="fa-solid fa-chevron-right"></i></button>
-        </div>
       </section>
     </main>
   )
 }
 
-export default SearchResult
+export default MoviesList
