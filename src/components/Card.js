@@ -1,16 +1,13 @@
 import React from 'react'
-import styles from './TvCard.module.css'
+import styles from './Card.module.css'
 import { useNavigate } from 'react-router-dom';
 
-function TvCard(  { movie } ) {
+function Card(  { movie } ) {
   const navigate = useNavigate();
+  
   const clickHandler = () => {
     window.scrollTo(0, 0);
-    navigate('/preview/tvshow/' + movie.id);
-    // This will navigate to the preview page with the selected movie's ID
-    // You can also pass more details if needed
-    console.log('Previewing movie:', movie.id);
-
+    movie.title ? navigate('/preview/movie/' + movie.id) : navigate('/preview/tvshow/' + movie.id);
   }
 
   return (
@@ -23,10 +20,10 @@ function TvCard(  { movie } ) {
           {Math.round(movie.vote_average * 10)}%
         </div>
       </div>
-      <h3 className={styles.title}>{movie.name}</h3>
+      <h3 className={styles.title}>{movie.title ? movie.title : movie.name}</h3>
       <p>Release Date: {movie.release_date}</p>
     </div>
   )
 }
 
-export default TvCard
+export default Card

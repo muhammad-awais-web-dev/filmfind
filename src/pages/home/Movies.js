@@ -1,13 +1,8 @@
 import React from 'react'
-import styles from './Movies.module.css'
-import MovieCard from '../../components/MovieCard';
+import styles from './ScrollSection.module.css'
+import Card from '../../components/Card';
 import { API } from '../../API/tmbd';
-import { useState } from 'react';
-
-const moviesNowPlaying = await API(`movie/now_playing`);
-const moviesPopular = await API(`movie/popular`);
-const moviesTopRated = await API(`movie/top_rated`);
-const moviesUpcoming = await API(`movie/upcoming`);
+import { useState, useEffect } from 'react';
 
 
 function Movies() {
@@ -22,12 +17,11 @@ function Movies() {
     const fetchMovies = async () => {
       try {
         const [nowPlaying, popular, topRated, upcoming] = await Promise.all([
-          movie('now_playing'),
-          movie('popular'),
-          movie('top_rated'),
-          movie('upcoming')
+          API ('movie/now_playing'),
+          API ('movie/popular'),
+          API ('movie/top_rated'),
+          API ('movie/upcoming')
         ]);
-        
         setMoviesNowPlaying(nowPlaying || { results: [] });
         setMoviesPopular(popular || { results: [] });
         setMoviesTopRated(topRated || { results: [] });
@@ -75,10 +69,10 @@ function Movies() {
   }
 
   return (
-    <section className={styles.movies}>
+    <section className={styles.section}>
       <h2 className={styles.heading}>Movies</h2>
-      <div className={styles.DurationSelector}  >
-              <div className={styles.highlight} style={{ left }} ></div>
+      <div className={styles.DurationSelector4}  >
+              <div className={styles.highlight4} style={{ left }} ></div>
               <p className={styles.duration} style={{color : `${selectedList === "now_playing"? "white" : "black"}` } } onClick={() => {setSelectedList('now_playing')}} >Now Playing</p>
               <p className={styles.duration} style={{color : `${selectedList === "popular"? "white" : "black"}` } } onClick={() => setSelectedList('popular')} >Popular</p>
               <p className={styles.duration} style={{color : `${selectedList === "top_rated"? "white" : "black"}` } } onClick={() => setSelectedList('top_rated')} >Top Rated</p>
@@ -86,22 +80,22 @@ function Movies() {
             </div>
             <div style={{ display: selectedList === 'now_playing' ? 'flex' : 'none' }} className={styles.trendingList}>
               {moviesNowPlaying.results.map( (movie) => (
-                  <MovieCard key={movie.id} movie={movie} />
+                  <Card key={movie.id} movie={movie} />
               ))}
             </div>
             <div style={{ display: selectedList === 'popular' ? 'flex' : 'none' }} className={styles.trendingList}>
               {moviesPopular.results.map( (movie) => (
-                  <MovieCard key={movie.id} movie={movie} />
+                  <Card key={movie.id} movie={movie} />
               ))}
             </div>
             <div style={{ display: selectedList === 'top_rated' ? 'flex' : 'none' }} className={styles.trendingList}>
               {moviesTopRated.results.map( (movie) => (
-                  <MovieCard key={movie.id} movie={movie} />
+                  <Card key={movie.id} movie={movie} />
               ))}
             </div>
             <div style={{ display: selectedList === 'upcoming' ? 'flex' : 'none' }} className={styles.trendingList}>
               {moviesUpcoming.results.map( (movie) => (
-                  <MovieCard key={movie.id} movie={movie} />
+                  <Card key={movie.id} movie={movie} />
               ))}
             </div>
     </section>

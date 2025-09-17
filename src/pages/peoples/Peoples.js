@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Peoples.module.css'
 import PersonCard from '../../components/PersonCard';
-import { popularPeople } from '../../API/tmbd';
+import { API } from '../../API/tmbd';
 import { useState, useEffect } from 'react';
 
 function Peoples() {
@@ -11,7 +11,7 @@ function Peoples() {
   useEffect(() => {
     const fetchPeople = async () => {
       try {
-        const data = await popularPeople();
+        const data = await API('person/popular');
         setPeople(data.results);
         setLoading(false);
       } catch (error) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../preview/PagePreview.module.css';
 import { useParams } from 'react-router-dom';
-import { personDetail } from '../../API/tmbd';
+import { API } from '../../API/tmbd';
 import { useEffect, useState } from 'react';
 
 function PersonDetail() {
@@ -12,7 +12,7 @@ function PersonDetail() {
   useEffect(() => {
     const fetchPerson = async () => {
       try {
-        const data = await personDetail(id);
+        const data = await API(`person/${id}`);
         setPerson(data);
         setLoading(false);
       } catch (error) {

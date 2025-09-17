@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './PagePreviewTv.module.css';
+import styles from './PagePreview.module.css';
 import { useParams } from 'react-router-dom';
 import { API } from '../../API/tmbd';
 import { useEffect, useState } from 'react';

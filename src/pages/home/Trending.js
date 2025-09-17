@@ -1,11 +1,9 @@
 import React from 'react'
-import styles from './Trending.module.css'
-import MovieCard from '../../components/MovieCard';
+import styles from './ScrollSection.module.css'
+import Card from '../../components/Card';
 import { API } from '../../API/tmbd';
+import { useState, useEffect } from 'react';
 
-
-const trendingMoviesDay = await API(`trending/all/day`);
-const trendingMoviesWeek = await API(`trending/all/week`);
 
 
 
@@ -18,8 +16,8 @@ function Trending() {
   useEffect(() => {
     const fetchTrending = async () => {
       try {
-        const dayData = await trending('day');
-        const weekData = await trending('week');
+        const dayData = await API ('trending/all/day');
+        const weekData = await API ('trending/all/week');
         setTrendingMoviesDay(dayData || { results: [] });
         setTrendingMoviesWeek(weekData || { results: [] });
         setLoading(false);
@@ -45,7 +43,7 @@ function Trending() {
   }
 
   return (
-    <section className={styles.trending}>
+    <section className={styles.section}>
       <h2 className={styles.heading}>Trending</h2>
       <div className={styles.DurationSelector}  >
         <div className={styles.highlight} style={selectedDuration === 'day' ? { left: 0 } : { left:'50%' }} ></div>
@@ -54,12 +52,12 @@ function Trending() {
       </div>
       <div id='trending-list-day' style={{ display: selectedDuration === 'day' ? 'flex' : 'none' }} className={styles.trendingList}>
         {trendingMoviesDay.results.map( (movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <Card key={movie.id} movie={movie} />
         ))}
       </div>
       <div id='trending-list-week' style={{ display: selectedDuration === 'week' ? 'flex' : 'none' }} className={styles.trendingList}>
         {trendingMoviesWeek.results.map( (movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <Card key={movie.id} movie={movie} />
         ))}
       </div>
     </section>

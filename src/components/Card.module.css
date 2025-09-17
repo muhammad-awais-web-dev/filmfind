@@ -1,13 +1,17 @@
 .movieCard{
-    height: fit-content;
-    padding: 10px 0;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    cursor: pointer;
     -webkit-user-select: none; /* Chrome, Safari, newer Opera */
     -moz-user-select: none;    /* Firefox */
     -ms-user-select: none;     /* Internet Explorer/Edge */
     user-select: none;         /* Standard */
-    border-radius: 12px;
-    background-color: var(--secondary-bg);
 }
 .movieCard:hover{
     transform: translateY(-5px);
@@ -16,7 +20,7 @@
     background-color: var(--tertiary-bg);
 }
 .posterImage{
-    width: 200px;
+    width: 100%;
     border-radius: 10px;
     object-fit: cover;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
