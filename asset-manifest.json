@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/filmfind/static/css/main.59a1c35c.css",
-    "main.js": "/filmfind/static/js/main.a857aebc.js",
+    "main.js": "/filmfind/static/js/main.5add97bc.js",
     "static/js/453.01d6cf8f.chunk.js": "/filmfind/static/js/453.01d6cf8f.chunk.js",
     "index.html": "/filmfind/index.html",
     "main.59a1c35c.css.map": "/filmfind/static/css/main.59a1c35c.css.map",
-    "main.a857aebc.js.map": "/filmfind/static/js/main.a857aebc.js.map",
+    "main.5add97bc.js.map": "/filmfind/static/js/main.5add97bc.js.map",
     "453.01d6cf8f.chunk.js.map": "/filmfind/static/js/453.01d6cf8f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.59a1c35c.css",
-    "static/js/main.a857aebc.js"
+    "static/js/main.5add97bc.js"
   ]
 }
