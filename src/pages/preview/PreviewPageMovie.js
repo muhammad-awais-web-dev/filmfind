@@ -29,7 +29,7 @@ function PreviewPageMovie() {
       <section className={styles.tvHeroSection} style={{ background:  `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path}) center/cover no-repeat` }}>
           {id ? (
             <div className={styles.tvMainInfo}>
-              <img className={styles.tvPosterImage} src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie?.poster_path}`} alt={movie?.name} />
+              <img className={styles.tvPosterImage} src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie?.poster_path}`} alt={movie?.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
               <div className={styles.tvDetailsContainer}>
                 <h1>{movie?.title}</h1>
                 <span>First Air Date: {movie?.first_air_date}</span>
@@ -62,7 +62,7 @@ function PreviewPageMovie() {
               window.scrollTo(0, 0);
               navigate('/person/' + member.id);
             }}>
-              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${member.profile_path}`} alt={member.name} />
+              <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${member.profile_path}`} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} alt={member.name} />
               <div className={styles.castInfo}>
                 <h3>{member.name}</h3>
                 <span>{member.character}</span>
@@ -77,7 +77,7 @@ function PreviewPageMovie() {
           {similarMovies?.map(show => (
             <div key={show.id} className={styles.seasonCard} onClick={() => {
               window.scrollTo(0, 0);
-              navigate('/preview/tvshow/' + show.id);
+              navigate('/preview/movie/' + show.id);
             }}>
               <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${show.poster_path}`} alt={show.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
               <div className={styles.similarShowInfo}>
@@ -88,8 +88,8 @@ function PreviewPageMovie() {
                     {Math.round(show?.vote_average * 10)}%
                   </div>
                 </div>
-                <h3>{show.name}</h3>
-                <span>{show.first_air_date}</span>
+                <h3>{show.name ? show.name : show.title}</h3>
+                <span>{show.first_air_date ? show.first_air_date : show.release_date}</span>
               </div>
             </div>
           ))}

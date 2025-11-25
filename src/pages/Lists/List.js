@@ -65,12 +65,10 @@ function MoviesList() {
         </div>
         {Result.results.map((item) => (
           <div key={item.id} className={styles.resultItem} onClick={() => {
-            if (item.media_type === 'movie') {
+            if (item.title) {
               navigate(`/preview/movie/${item.id}`);
-            } else if (item.media_type === 'tv') {
+            } else if (item.name) {
               navigate(`/preview/tvshow/${item.id}`);
-            } else if (item.media_type === 'person') {
-              navigate(`/person/${item.id}`);
             }
           }} >
             <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title || item.name} onError={(e) => { e.target.onerror = null; e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'; }} />
