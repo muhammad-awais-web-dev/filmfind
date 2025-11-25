@@ -14,7 +14,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <BrowserRouter basename='/filmfind'>
+    <BrowserRouter>
       <ScrollToTop />
       <Navbar />
       <Routes>
